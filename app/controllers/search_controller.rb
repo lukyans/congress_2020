@@ -28,6 +28,8 @@ class SearchController < ApplicationController
          )
     end
 
-    redirect_to root_path
+    @current_state_members = json[:results]
+
+    redirect_to root_path current_state_members: @current_state_members
   end
 end
