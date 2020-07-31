@@ -3,7 +3,7 @@ class SearchController < ApplicationController
     state = params[:state]
 
     conn = Faraday.new(url: "https://api.propublica.org") do |faraday|
-      binding.remote_pry
+      logger.debug Rails.application.credentials.propublica[:PROPUBLICA_API_KEY]
       faraday.headers["X-API-KEY"] = Rails.application.credentials.propublica[:PROPUBLICA_API_KEY]
     end
 
