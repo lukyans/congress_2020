@@ -1,33 +1,35 @@
-<nav class="navbar navbar-default" role="navigation">
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
-      <%= form_tag :search, method: :get, class: "form-inline" do %>
-        <div class="form-group search-field">
-          <%= select_tag :state, options_for_select(us_states) %>
-          <%= submit_tag "Locate Members of the House", class: "btn btn-primary" %>
-        </div>
-      <% end %>
-    </ul>
-  </div>
-</nav>
+<div class="conntainer p-5">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class=" navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <%= form_tag :search, method: :get, class: "form-inline" do %>
+          <div class="form-group search-field">
+            <%= select_tag :state, options_for_select(us_states) %>
+            <%= submit_tag "Locate Members of the House", class: "btn btn-primary ml-3" %>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</div>
 
 <div class="container">
   <div class="row">
-    <% @members.each do |member| %>
-      <div class="col-sm mt-3">
+    <% @current_state_members.each do |current_state_member| %>
+      <div class="col-4 mt-3">
         <div class="card bg-dark text-white" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title"><%= member.name %></h5>
-            <p class="card-text">Role: <%= member.role %></p>
-            <p class="card-text">Gender: <%= member.gender %></p>
-            <p class="card-text">Party: <%= member.party %></p>
-            <p class="card-text">Facebook: <%= member.facebook_account %></p>
-            <p class="card-text">Youtube: <%= member.youtube_id %></p>
-            <p class="card-text">Seniority: <%= member.seniority %></p>
-            <p class="card-text">Next Election: <%= member.next_election %></p>
-            <p class="card-text">API URI: <%= member.api_uri %></p>
-            <p class="card-text">District: <%= member.district %></p>
-            <p class="card-text">At-large: <%= member.at_large %></p>
+            <h5 class="card-title"><%= current_state_member[:name] %></h5>
+            <p class="card-text">Role: <%= current_state_member[:role] %></p>
+            <p class="card-text">Gender: <%= current_state_member[:gender] %></p>
+            <p class="card-text">Party: <%= current_state_member[:party] %></p>
+            <p class="card-text">Facebook: <%= current_state_member[:facebook_account] %></p>
+            <p class="card-text">Youtube: <%= current_state_member[:youtube_id] %></p>
+            <p class="card-text">Seniority: <%= current_state_member[:seniority] %></p>
+            <p class="card-text">Next Election: <%= current_state_member[:next_election] %></p>
+            <p class="card-text">API URI: <%= current_state_member[:api_uri] %></p>
+            <p class="card-text">District: <%= current_state_member[:district] %></p>
+            <p class="card-text">At-large: <%= current_state_member[:at_large] %></p>
           </div>
         </div>
       </div>
