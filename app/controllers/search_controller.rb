@@ -10,7 +10,7 @@ class SearchController < ApplicationController
     json = JSON.parse(response.body, symbolize_names: true)
 
     json[:results].each do |result|
-        Member.create(
+        Member.find_or_create_by(
           name: result[:name],
           first_name: result[:first_name],
           middle_name: result[:middle_name],
