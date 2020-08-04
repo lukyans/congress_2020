@@ -1,0 +1,14 @@
+<div class="conntainer p-5">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class=" navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <%= form_tag :search, method: :get, class: "form-inline" do %>
+          <div class="form-group search-field">
+            <%= select_tag :state, options_for_select(us_states) %>
+            <%= submit_tag "Locate Members of the House", class: "btn btn-primary ml-3" %>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</div>
