@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="h1"><%= @members.try(:count) %> Results</div>
+      </div>
+      <div class="col-1">
+        <%= link_to home_sort_asc_path(state: params[:state]) do %>
+          <i class="fa fa-sort-asc fa-3x" aria-hidden="true"></i>
+        <% end %>
+        <%= link_to home_sort_desc_path(state: params[:state]) do %>
+          <i class="fa fa-sort-desc fa-3x" aria-hidden="true"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+    <% @members.try(:each) do |member| %>
+      <div class="col-4 mt-3">
+        <div class="card bg-dark text-white" style="width: 18rem;">
+          <div class="card-body">
+            <ul class="current_state_member">
+              <li class="name">
+                <h5 class="card-title"><%= member[:name] %></h5>
+              </li>
+              <li class="role">
+                <p class="card-text">Role: <%= member[:role] %></p>
+              </li>
+              <li class="gender">
+                <p class="card-text">Gender: <%= member[:gender] %></p>
+              </li>
+              <li class="party">
+                <p class="card-text">Party: <%= member[:party] %></p>
+              </li>
+              <li class="facebook">
+                <p class="card-text">Facebook: <%= member[:facebook_account] %></p>
+              </li>
+              <li class="youtube">
+                <p class="card-text">Youtube: <%= member[:youtube_id] %></p>
+              </li>
+              <li class="seniority">
+                <p class="card-text">Seniority: <%= member[:seniority] %></p>
+              </li>
+              <li class="next_election">
+                <p class="card-text">Next Election: <%= member[:next_election] %></p>
+              </li>
+              <li class="api_uri">
+                <p class="card-text">API URI: <%= member[:api_uri] %></p>
+              </li>
+              <li class="district">
+                <p class="card-text">District: <%= member[:district] %></p>
+              </li>
+              <li class="at_large">
+                <p class="card-text">At-large: <%= member[:at_large] %></p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
