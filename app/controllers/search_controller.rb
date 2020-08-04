@@ -1,12 +1,12 @@
 class SearchController < ApplicationController
   def index
-    state = params[:state]
+    @state = params[:state]
 
     conn = Faraday.new(url: "https://api.propublica.org") do |faraday|
       faraday.headers["X-API-KEY"] = Rails.application.credentials[:propublica_api_key]
     end
 
-    response = conn.get("/congress/v1/members/house/#{state}/current.json")
+    response = conn.get("/congress/v1/members/house/#{@state}/current.json")
     json = JSON.parse(response.body, symbolize_names: true)
 
     json[:results].each do |result|
@@ -24,20 +24,11 @@ class SearchController < ApplicationController
           next_election: result[:next_election],
           api_uri: result[:api_uri],
           district: result[:district],
-          at_large: result[:at_large]
+          at_large: result[:at_large],
+          state: @state
          )
     end
 
-    @current_state_members = json[:results]
-
-    redirect_to root_path current_state_members: @current_state_members
-  end
-
-  def sort_asc
-    # binding.pry
-    # @current_state_members = params[:current_state_members]
-  end
-
-  def sort_desc
+    redirect_to root_path(state: @state)
   end
 end
