@@ -4,7 +4,7 @@
       <ul class="nav navbar-nav">
         <%= form_tag :search, method: :get, class: "form-inline" do %>
           <div class="form-group search-field">
-            <%= select_tag :state, options_for_select(us_states) %>
+            <%= select_tag :state, options_for_select(us_states, selected: params[:state]) %>
             <%= submit_tag "Locate Members of the House", class: "btn btn-primary ml-3" %>
           </div>
         <% end %>
